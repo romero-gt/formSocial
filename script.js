@@ -39,18 +39,30 @@ form.addEventListener("submit", (e) => {
   // Definindo a geração:
   let geracao;
 
-  if (dataNascimento.getFullYear() > 1946 && dataNascimento.getFullYear() < 1964) {
-    geracao = 'Geração Baby Bloomer'
-  } else if (dataNascimento.getFullYear() >= 1965 && dataNascimento.getFullYear() <= 1980) {
-   geracao = 'Geração X'
-  } else if (dataNascimento.getFullYear() >= 1981 && dataNascimento.getFullYear() <= 1996) {
-    geracao = 'Millennial'
-  } else if (dataNascimento.getFullYear() >= 1997 && dataNascimento.getFullYear() <= 2010) {
-    geracao = 'Geração Z'
+  if (
+    dataNascimento.getFullYear() > 1946 &&
+    dataNascimento.getFullYear() < 1964
+  ) {
+    geracao = "Geração Baby Bloomer";
+  } else if (
+    dataNascimento.getFullYear() >= 1965 &&
+    dataNascimento.getFullYear() <= 1980
+  ) {
+    geracao = "Geração X";
+  } else if (
+    dataNascimento.getFullYear() >= 1981 &&
+    dataNascimento.getFullYear() <= 1996
+  ) {
+    geracao = "Millennial";
+  } else if (
+    dataNascimento.getFullYear() >= 1997 &&
+    dataNascimento.getFullYear() <= 2010
+  ) {
+    geracao = "Geração Z";
   } else if (dataNascimento.getFullYear() > 2010) {
-    geracao = 'Geração Alpha'
+    geracao = "Geração Alpha";
   } else {
-    geracao = 'Nasceu antes de 1946'
+    geracao = "Nasceu antes de 1946";
   }
 
   // Mostrando o resultado
