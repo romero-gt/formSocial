@@ -5,12 +5,17 @@ form.addEventListener('submit', function (event) {
     event.preventDefault();
 
     // Captura de dados
-    let nome = document.getElementById('nome').value;
-    let sobrenome = document.getElementById('sobrenome').value;
+    let nome = document.getElementById('nome').value.trim().toUpperCase();
+    let sobrenome = document.getElementById('sobrenome').value.trim().toUpperCase();
     let nascimento = document.getElementById('nascimento').value;
     let estadoCivil = document.getElementById('estadoCivil').value;
     let sexo = document.querySelector('input[name="sexo"]:checked').value;
     let opcaoSexual = document.getElementById('opcaoSexual').value;
+
+    const regexTexto = /^[A-Za-zÀ-ú\s]+$/;
+    if (!regexTexto.test(nome) || !regexTexto.test(sobrenome)) {
+        alert('Nome e sobrenome devem conter apenas letras.')
+    }
 
     if (!nascimento) {
         alert('Data de nascimento é obrigatória!');
@@ -19,6 +24,10 @@ form.addEventListener('submit', function (event) {
 
     const dataNascimento = new Date(nascimento);
     const idade = calcularIdade(dataNascimento);
+
+    if (idade < 10 || idade > 90) {
+        alert("Idade inválida! Deve ser entre 10 e 90 anos.")
+    }
 
     // Mostrando o resultado
     resultado.innerHTML = `
@@ -33,6 +42,8 @@ form.addEventListener('submit', function (event) {
                 </ul>
         </div>
     `;
+
+    form.reset();
 });
 
 function calcularIdade(dataNascimento) {
