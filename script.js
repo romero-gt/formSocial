@@ -33,7 +33,7 @@ form.addEventListener('submit', function (event){
 
     resultado.innerHTML = `
         <div class="card p-4 shadow-sm">
-            <h4>Cadastro REalizado</h4>
+            <h4>Cadastro Realizado</h4>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">${nome} ${sobrenome}</li>
                     <li class="list-group-item">${idade}</li>
