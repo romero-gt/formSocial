@@ -17,6 +17,7 @@ form.addEventListener('submit', function (event) {
 
     if (!regexTexto.test(nome) || !regexTexto.test(sobrenome)) {
         alert("Nome e sobre nome deve conter apenas letras.");
+        return;
     }
 
     if (!nascimento) {
