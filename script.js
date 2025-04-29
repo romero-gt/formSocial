@@ -5,12 +5,17 @@ form.addEventListener('submit', function (event) {
     event.preventDefault();
 
     // Captura de dados
-    let nome = document.getElementById('nome').value;
-    let sobrenome = document.getElementById('sobrenome').value;
+    let nome = document.getElementById('nome').value.trim().toUpperCase();
+    let sobrenome = document.getElementById('sobrenome').value.trim().toUpperCase();
     let nascimento = document.getElementById('nascimento').value;
     let estadoCivil = document.getElementById('estadoCivil').value;
     let sexo = document.querySelector('input[name="sexo"]:checked').value;
     let opcaoSexual = document.getElementById('opcaoSexual').value;
+
+    const regextexto= /^[A-Za-zÀ-ú\s]+$/;
+    if (!regextexto.test(nome) || !regextexto.test(sobrenome)) {
+        alert('Nome e sobrenome devem conter apenas letras.')
+    }
 
     if (!nascimento) {
         alert('Data de nascimento é obrigatória!');
@@ -33,6 +38,7 @@ form.addEventListener('submit', function (event) {
                 </ul>
         </div>
     `;
+    form.reset();
 });
 
 function calcularIdade(dataNascimento) {
