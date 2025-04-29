@@ -36,6 +36,11 @@ form.addEventListener("submit", (e) => {
     return idade;
   }
 
+  // Validando a idade:
+  if (idade < 10 || idade > 90) {
+    alert('Idade inválida! Deve ser entre 10 e 90 anos!')
+  }
+
   // Definindo a geração:
   let geracao;
 
@@ -70,12 +75,12 @@ form.addEventListener("submit", (e) => {
     <div class="card p-4 shadow-sm">
       <h4>Cadastro Realizado:</h4>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item">${nome} ${sobrenome}</li>
+        <li class="list-group-item">${nome.toUpperCase()} ${sobrenome.toUpperCase()}</li>
         <li class="list-group-item">${idade}</li>
-        <li class="list-group-item">${geracao}</li>
-        <li class="list-group-item">${sexo}</li>
-        <li class="list-group-item">${opcaoSexual}</li>
-        <li class="list-group-item">${estadoCivil}</li>
+        <li class="list-group-item">${geracao.toUpperCase()}</li>
+        <li class="list-group-item">${sexo.toUpperCase()}</li>
+        <li class="list-group-item">${opcaoSexual.toUpperCase()}</li>
+        <li class="list-group-item">${estadoCivil.toUpperCase()}</li>
       </ul> 
     </div>
   `;
