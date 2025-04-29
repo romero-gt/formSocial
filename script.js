@@ -5,12 +5,18 @@ form.addEventListener('submit', function (event) {
     event.preventDefault();
 
     // Captura de dados
-    let nome = document.getElementById('nome').value;
-    let sobrenome = document.getElementById('sobrenome').value;
+    let nome = document.getElementById('nome').value.trim().toUpperCase();
+    let sobrenome = document.getElementById('sobrenome').value.trim().toUpperCase();
     let nascimento = document.getElementById('nascimento').value;
     let estadoCivil = document.getElementById('estadoCivil').value;
     let sexo = document.querySelector('input[name="sexo"]:checked').value;
     let opcaoSexual = document.getElementById('opcaoSexual').value;
+
+    const regexTexto = /^[A-Za-zÀ-ú\s]+$/;
+    if (!regexTexto.test(nome) || !regexTexto.test(sobrenome)) {
+        alert('Nome e Sobrenome devem conter apenas letras!')
+        return;
+    }
 
     if (!nascimento) {
         alert('Data de nascimento é obrigatória!');
@@ -20,6 +26,12 @@ form.addEventListener('submit', function (event) {
     const dataNascimento = new Date(nascimento);
     const idade = calcularIdade(dataNascimento);
 
+    if (idade < 10 || idade > 90) {
+        alert("Idade invalidada! A idade deve ser entre 10 e 90 anos!")
+    }
+
+    const geracao = identificarGeracao(dataNascimento.getFullYear());
+
     // Mostrando o resultado
     resultado.innerHTML = `
         <div class="card p-4 shadow-sm">
@@ -27,12 +39,15 @@ form.addEventListener('submit', function (event) {
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">${nome} ${sobrenome}</li>
                     <li class="list-group-item">${idade} anos</li>
+                    <li class="list-group-item">${geracao}</li>
                     <li class="list-group-item">${sexo}</li>
                     <li class="list-group-item">${opcaoSexual}</li>
                     <li class="list-group-item">${estadoCivil}</li>
                 </ul>
         </div>
     `;
+
+    form.reset();
 });
 
 function calcularIdade(dataNascimento) {
@@ -44,4 +59,21 @@ function calcularIdade(dataNascimento) {
         idade--;
     }
     return idade;
+}
+
+function identificarGeracao(ano) {
+    switch (true) {
+        case ano >= 1946 && ano <= 1964:
+            return 'Baby Boomer';
+        case ano >= 1965 && ano <= 1980:
+            return 'Geração X';
+        case ano >= 1981 && ano <= 1996:
+            return 'Millennials';
+        case ano >= 1997 && ano <= 2012:
+            return 'Centennial';
+        case ano >= 2013:
+            return 'Geração Alpha';
+        default:
+            return 'Geração não classificada';
+    }
 }
