@@ -12,10 +12,12 @@ form.addEventListener('submit', function (event){
     let estadoCivil = document.getElementById('estadoCivil').value;
     let sexo = document.querySelector('input[name="sexo"]:checked').value;
     let opcaoSexual = document.getElementById('opcaoSexual').value
+    let erro = document.getElementById('erro');
 
     const regexTexto = /^[A-Za-zÀ-ú]+$/;
     if (!regexTexto.test(nome) || !regexTexto.test(sobrenome)) {
         alert('Nome e sobrenome devem conter apenas letras. ')
+        return;
     }
 
     if (!nascimento){
@@ -68,5 +70,7 @@ form.addEventListener('submit', function (event){
 })
 
 
-
+function calcularGeracao(idade) {
+    switch(idade)
+}
 
