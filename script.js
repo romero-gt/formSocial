@@ -15,6 +15,8 @@ form.addEventListener('submit', function (event) {
     const regexTexto = /^[A-Za-zÀ-ú\s]+$/;
     if (!regexTexto.test(nome) || !regexTexto.test(sobrenome)) {
         alert('Nome e Sobrenome devem conter apenas letras')
+        erro.innerTEXT = `Campo Conter apenas letras`
+        return;
     }
 
     if (!nascimento) {
@@ -38,6 +40,7 @@ form.addEventListener('submit', function (event) {
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">${nome} ${sobrenome}</li>
                     <li class="list-group-item">${idade} anos</li>
+                    <li class="list-group-item">${geracao}</li>
                     <li class="list-group-item">${sexo}</li>
                     <li class="list-group-item">${opcaoSexual}</li>
                     <li class="list-group-item">${estadoCivil}</li>
