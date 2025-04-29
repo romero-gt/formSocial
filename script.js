@@ -11,10 +11,12 @@ form.addEventListener('submit', function (event) {
     let estadoCivil = document.getElementById('estadoCivil').value;
     let sexo = document.querySelector('input[name="sexo"]:checked').value;
     let opcaoSexual = document.getElementById('opcaoSexual').value;
+    let identificarGeracao = ('Identificarg').value;
 
     const regextexto= /^[A-Za-zÀ-ú\s]+$/;
     if (!regextexto.test(nome) || !regextexto.test(sobrenome)) {
         alert('Nome e sobrenome devem conter apenas letras.')
+        return;
     }
 
     if (!nascimento) {
@@ -22,8 +24,15 @@ form.addEventListener('submit', function (event) {
         return;
     }
 
+
+
     const dataNascimento = new Date(nascimento);
     const idade = calcularIdade(dataNascimento);
+
+    if (idade < 10 || idade > 90) {
+        alert('Sua idade tem que estar entre 10 à 90 anos');
+        return;
+    }
 
     // Mostrando o resultado
     resultado.innerHTML = `
@@ -32,6 +41,7 @@ form.addEventListener('submit', function (event) {
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">${nome} ${sobrenome}</li>
                     <li class="list-group-item">${idade} anos</li>
+                    <li class="list-group-item">${identificarGeracao}</li>
                     <li class="list-group-item">${sexo}</li>
                     <li class="list-group-item">${opcaoSexual}</li>
                     <li class="list-group-item">${estadoCivil}</li>
@@ -39,7 +49,7 @@ form.addEventListener('submit', function (event) {
         </div>
     `;
     form.reset();
-});
+})
 
 function calcularIdade(dataNascimento) {
     const hoje = new Date();
@@ -50,4 +60,21 @@ function calcularIdade(dataNascimento) {
         idade--;
     }
     return idade;
+}
+
+function identificarGeracao(Geracao) {
+    switch(true) {
+        case ano >= 1946 && ano <= 1964:
+            return 'Baby Boomer';
+        case ano >= 1965 && ano <= 1980:
+            return 'Geração X';
+        case ano >= 1981 && ano <= 1996:
+            return 'Millenium (Geração Y)';
+        case ano >= 1997 && ano <= 2012:
+            return 'Centennial (Geração Z)';
+        case ano >= 2013:
+            return 'Geração Alpha';
+        default:
+            return 'Geração não classificada';
+    }
 }
