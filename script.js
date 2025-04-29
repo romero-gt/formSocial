@@ -15,6 +15,7 @@ form.addEventListener('submit', function (event) {
     const regexTexto = /^[A-Za-zÀ-ù/s]+$/;
     if (!regexTexto.test(nome) || !regexTexto.test(sobrenome)) {
         alert("Nome e sobrenome devem conter apenas letras")
+        return;
     };
 
     if (!nascimento) {
@@ -25,8 +26,11 @@ form.addEventListener('submit', function (event) {
     const dataNascimento = new Date(nascimento);
     const idade = calcularIdade(dataNascimento);
 
-    if (idade < 10 || idade > 90)
+    if (idade < 10 || idade > 90) {
         alert("Idade inválida! Deve ser entre 10 e 90.")
+    }
+
+    const geracao = identificarGeracao(dataNascimento.getFullYear())
 
     // Mostrando o resultado
     resultado.innerHTML = `
@@ -35,6 +39,7 @@ form.addEventListener('submit', function (event) {
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">${nome} ${sobrenome}</li>
                     <li class="list-group-item">${idade} anos</li>
+                    <li class="list-group-item">${geracao}</li>
                     <li class="list-group-item">${estadoCivil}</li>
                     <li class="list-group-item">${sexo}</li>
                     <li class="list-group-item">${opcaoSexual}</li>
@@ -57,3 +62,19 @@ function calcularIdade(dataNascimento) {
 // Idade Permitida;
 // Qual geração?; 
 
+function identificarGeracao(ano) {
+    switch (true) {
+        case ano >= 1946 && ano <= 1964:
+            return 'Baby Boomer';
+        case ano >= 1965 && ano <= 1980:
+            return 'Geração X';
+        case ano >= 1981 && ano <= 1996:
+            return 'Millenium(Geração Y)';
+        case ano >= 1997 && ano <= 2012:
+            return 'Centennial (Geração Z)';
+        case ano >= 2013:
+            return 'Geração Alpha';
+        default: 
+            return 'Geração não classificado'
+    }
+}
