@@ -56,31 +56,20 @@ form.addEventListener("submit", (e) => {
 
   // Definindo a geração:
   let geracao;
+  let ano = dataNascimento.getFullYear();
 
-  if (
-    dataNascimento.getFullYear() > 1946 &&
-    dataNascimento.getFullYear() < 1964
-  ) {
+  if (ano > 1946 && ano < 1964) {
     geracao = "Geração Baby Bloomer";
-  } else if (
-    dataNascimento.getFullYear() >= 1965 &&
-    dataNascimento.getFullYear() <= 1980
-  ) {
+  } else if (ano >= 1965 && ano <= 1980) {
     geracao = "Geração X";
-  } else if (
-    dataNascimento.getFullYear() >= 1981 &&
-    dataNascimento.getFullYear() <= 1996
-  ) {
+  } else if (ano >= 1981 && ano <= 1996) {
     geracao = "Millennial";
-  } else if (
-    dataNascimento.getFullYear() >= 1997 &&
-    dataNascimento.getFullYear() <= 2010
-  ) {
+  } else if (ano >= 1997 && ano <= 2010) {
     geracao = "Geração Z";
-  } else if (dataNascimento.getFullYear() > 2010) {
+  } else if (ano > 2010) {
     geracao = "Geração Alpha";
   } else {
-    geracao = "Nasceu antes de 1946";
+    geracao = "Geração não classificada";
   }
 
   // Mostrando o resultado
@@ -98,6 +87,7 @@ form.addEventListener("submit", (e) => {
     </div>
   `;
 
+  // Resetando os dados
   form.reset();
   erro.innerText = "";
 });
